@@ -1,0 +1,24 @@
+services:
+  unbound:
+    container_name: unbound
+    image: ghcr.io/zyrakq/unbound:latest
+    # image: unbound
+    # build: src/unbound
+    ports:
+      - "53:53/udp"
+      - "853:853/tcp"
+    volumes:
+      - unbound_certs:/etc/unbound/tls
+    environment:
+      ACCESS_CONTROL_CUSTOM: ${ACCESS_CONTROL_CUSTOM}
+      LOCAL_DOMAINS: ${LOCAL_DOMAINS}
+      BLOCK_PRIVATE: ${BLOCK_PRIVATE:-false}
+      ENABLE_DOT: ${ENABLE_DOT:-true}
+      ENABLE_DOT_SERVER: ${ENABLE_DOT_SERVER:-true}
+      ENABLE_DNSSEC: ${ENABLE_DNSSEC:-true}
+      ENABLE_CACHE: ${ENABLE_CACHE:-true}
+    restart: unless-stopped
+
+volumes:
+  unbound_certs:
+    name: unbound_certs
