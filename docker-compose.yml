@@ -2,8 +2,13 @@ services:
   unbound:
     container_name: unbound
     image: ghcr.io/zyrakq/unbound:latest
-    # image: unbound
-    # build: src/unbound
+    # image: localhost/unbound:latest
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: 3
     ports:
       - "53:53/udp"
       - "853:853/tcp"
@@ -17,7 +22,6 @@ services:
       ENABLE_DOT_SERVER: ${ENABLE_DOT_SERVER:-true}
       ENABLE_DNSSEC: ${ENABLE_DNSSEC:-true}
       ENABLE_CACHE: ${ENABLE_CACHE:-true}
-    restart: unless-stopped
 
 volumes:
   unbound_certs:

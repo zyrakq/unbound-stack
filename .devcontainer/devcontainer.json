@@ -1,5 +1,5 @@
 {
-    "name": "unbound-stack Workspace (Archlinux)",
+    "name": "Unbound Stack Workspace (Archlinux)",
     "build": {
         "dockerfile": "Dockerfile",
         "context": ".",
