@@ -1,0 +1,19 @@
+[paths]
+extensions_dirs = ["extensions"]
+
+[build]
+skip_base_generation =true
+extensions = ["standard-port", "dot-port", "dot-client"]
+
+[build.combos]
+"standard-dns" = ["standard-port", "dot-client"]
+"dot-dns" = ["dot-port", "dot-client"]
+
+[build.environments]
+available = ["standard-node", "dot-node"]
+
+[build.environments.standard-node]
+combos = ["standard-dns"]
+
+[build.environments.dot-node]
+combos = ["dot-dns"]

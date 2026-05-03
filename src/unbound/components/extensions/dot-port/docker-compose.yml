@@ -1,0 +1,12 @@
+services:
+  unbound:
+    ports:
+      - "853:853/tcp"
+    volumes:
+      - unbound-certs:/etc/unbound/tls
+    environment:
+      ENABLE_DOT_SERVER: ${ENABLE_DOT_SERVER:-true}
+
+volumes:
+  unbound-certs:
+    name: ${UNBOUND_CERTS:-unbound-certs}

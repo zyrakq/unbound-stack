@@ -1,0 +1,5 @@
+services:
+  unbound:
+    ports:
+      - "${UNBOUND_STANDARD_PORT:-53}:53/tcp"
+      - "${UNBOUND_STANDARD_PORT:-53}:53/udp"

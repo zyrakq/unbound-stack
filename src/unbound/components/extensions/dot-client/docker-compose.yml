@@ -1,0 +1,9 @@
+services:
+  unbound:
+    environment:
+      ENABLE_DOT: ${ENABLE_DOT:-true}
+      UPSTREAM_SERVERS: ${UPSTREAM_SERVERS:-}
+      UPSTREAM_DNS_1: ${UPSTREAM_DNS_1:-}
+      UPSTREAM_DNS_2: ${UPSTREAM_DNS_2:-}
+      UPSTREAM_DNS_3: ${UPSTREAM_DNS_3:-}
+      UPSTREAM_DNS_4: ${UPSTREAM_DNS_4:-}

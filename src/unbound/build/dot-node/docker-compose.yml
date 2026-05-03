@@ -1,0 +1,37 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "${LOG_MAX_SIZE:-10m}"
+    max-file: "${LOG_MAX_FILE:-3}"
+    compress: "${LOG_COMPRESS:-true}"
+services:
+  unbound:
+    container_name: unbound
+    image: ${IMAGE:-ghcr.io/zyrakq/unbound:latest}
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      ACCESS_CONTROL_CUSTOM: ${ACCESS_CONTROL_CUSTOM}
+      LOCAL_DOMAINS: ${LOCAL_DOMAINS}
+      BLOCK_PRIVATE: ${BLOCK_PRIVATE:-false}
+      ENABLE_DNSSEC: ${ENABLE_DNSSEC:-true}
+      ENABLE_CACHE: ${ENABLE_CACHE:-true}
+      ENABLE_DOT_SERVER: ${ENABLE_DOT_SERVER:-true}
+      ENABLE_DOT: ${ENABLE_DOT:-true}
+      UPSTREAM_SERVERS: ${UPSTREAM_SERVERS:-}
+      UPSTREAM_DNS_1: ${UPSTREAM_DNS_1:-}
+      UPSTREAM_DNS_2: ${UPSTREAM_DNS_2:-}
+      UPSTREAM_DNS_3: ${UPSTREAM_DNS_3:-}
+      UPSTREAM_DNS_4: ${UPSTREAM_DNS_4:-}
+    networks:
+      - unbound-network
+    ports:
+      - "853:853/tcp"
+    volumes:
+      - unbound-certs:/etc/unbound/tls
+networks:
+  unbound-network:
+    name: unbound-network
+volumes:
+  unbound-certs:
+    name: ${UNBOUND_CERTS:-unbound-certs}
