@@ -4,7 +4,6 @@ x-logging: &default-logging
     max-size: "${LOG_MAX_SIZE:-10m}"
     max-file: "${LOG_MAX_FILE:-3}"
     compress: "${LOG_COMPRESS:-true}"
-
 services:
   unbound:
     container_name: unbound
@@ -17,3 +16,10 @@ services:
       BLOCK_PRIVATE: ${BLOCK_PRIVATE:-false}
       ENABLE_DNSSEC: ${ENABLE_DNSSEC:-true}
       ENABLE_CACHE: ${ENABLE_CACHE:-true}
+      ENABLE_DOT: ${ENABLE_DOT:-true}
+      UPSTREAM_SERVERS: ${UPSTREAM_SERVERS:-}
+      UPSTREAM_DNS_1: ${UPSTREAM_DNS_1:-}
+      UPSTREAM_DNS_2: ${UPSTREAM_DNS_2:-}
+      UPSTREAM_DNS_3: ${UPSTREAM_DNS_3:-}
+      UPSTREAM_DNS_4: ${UPSTREAM_DNS_4:-}
+    network_mode: container:${CONTAINER_NAME}

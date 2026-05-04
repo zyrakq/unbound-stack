@@ -23,15 +23,10 @@ services:
       UPSTREAM_DNS_2: ${UPSTREAM_DNS_2:-}
       UPSTREAM_DNS_3: ${UPSTREAM_DNS_3:-}
       UPSTREAM_DNS_4: ${UPSTREAM_DNS_4:-}
-    networks:
-      - unbound-network
     ports:
       - "853:853/tcp"
     volumes:
       - unbound-certs:/etc/unbound/tls
-networks:
-  unbound-network:
-    name: unbound-network
 volumes:
   unbound-certs:
     name: ${UNBOUND_CERTS:-unbound-certs}

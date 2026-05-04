@@ -22,11 +22,6 @@ services:
       UPSTREAM_DNS_2: ${UPSTREAM_DNS_2:-}
       UPSTREAM_DNS_3: ${UPSTREAM_DNS_3:-}
       UPSTREAM_DNS_4: ${UPSTREAM_DNS_4:-}
-    networks:
-      - unbound-network
     ports:
       - "${UNBOUND_STANDARD_PORT:-53}:53/tcp"
       - "${UNBOUND_STANDARD_PORT:-53}:53/udp"
-networks:
-  unbound-network:
-    name: unbound-network

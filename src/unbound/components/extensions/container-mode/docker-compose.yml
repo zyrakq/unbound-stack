@@ -1,0 +1,3 @@
+services:
+  unbound:
+    network_mode: container:${CONTAINER_NAME}
