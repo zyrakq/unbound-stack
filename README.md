@@ -35,7 +35,7 @@ LOCAL_DOMAINS="local:192.168.1.100"
 ENABLE_DOT_SERVER=true
 ```
 
-Full documentation: [`src/unbound/README.md`](src/unbound/README.md)
+Full documentation: [`app/README.md`](app/README.md)
 
 ## 🔐 Certificate Setup
 
